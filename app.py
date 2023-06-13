@@ -30,6 +30,10 @@ class User(db.Model):
 db.create_all()
 
 @app.route('/')
-
+def dashboard():
+    if 'username' in session:
+        return render_template('dashboard.html',username=session['username'])
+    else:
+        return redirect(url_for('login'))
 if __name__ == '__main__':
     app.run(debug=True)
