@@ -1,7 +1,7 @@
 #import required modules
 import os
 import psycopg2
-from flask import Flask,render_template,request,url_for,flash, session
+from flask import Flask,render_template,request,url_for,flash, session,redirect
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash,check_password_hash
