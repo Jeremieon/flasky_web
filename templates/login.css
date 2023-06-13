@@ -1,0 +1,10 @@
+main {
+    margin: 24px;
+    width: 350px;
+    height: 350px;
+    text-align: center;
+    display: flex;
+    font-weight: 500;
+    justify-content: center;
+    background-color: blue;
+}
