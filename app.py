@@ -70,8 +70,7 @@ class Books(db.Model):
     year = db.Column(db.Integer)
     added_date = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
-    def __init__(self, category, author,title,year):
-        self.id = id
+    def __init__(self, id,category, author,title,year):
         self.category = category
         self.author = author
         self.title = title
@@ -80,9 +79,10 @@ class Books(db.Model):
     def serialize(self):
         return {
             'id':self.id,
-            'category': self.id,
+            'category': self.category,
             'author': self.author,
-            'title': self.title
+            'title': self.title,
+            'year':self.year
         }
 # Posts
 class Post(db.Model):
@@ -171,7 +171,7 @@ def get_books():
     return render_template('library.html',books=books)
 
 #Get Api books
-@app.route('/api/books', methods=['GET'])
+@app.route('/books', methods=['GET'])
 def api_get_books():
     books = Books.query.all()
     serialized_books = [book.serialize() for book in books]
@@ -188,14 +188,15 @@ def get_book(book_id):
 
 
 # create a new Book
-@app.route('/books/', methods=['POST'])
+@app.route('/books', methods=['POST'])
 def create_book():
-    data = request.get.json()
+    books = len(Books.query.all())
+    data = request.get_json()
     category = data.get('category')
     author = data.get('author')
     title = data.get('title')
     year = data.get('year')
-    new_book = Books(category=category,author=author,title=title,year=year)
+    new_book = Books(id=books+1,category=category,author=author,title=title,year=year)
 
     db.session.add(new_book)
     db.session.commit()
@@ -204,10 +205,10 @@ def create_book():
 
 #update book
 @app.route('/books/<int:book_id>', methods=['PUT'])
-def update_user(book_id):
-    book = Books.query.get(id=book_id)
+def update_book(book_id):
+    book = Books.query.filter_by(id=book_id).first()
     if book:
-        data = request.get.json()
+        data = request.get_json()
         category = data.get('category')
         author = data.get('author')
         title = data.get('title')
@@ -220,13 +221,13 @@ def update_user(book_id):
 
         db.session.commit()
 
-        return jsonify(user.serialize())
+        return jsonify(book.serialize())
     return jsonify({'message': 'User not found'}), 404
 
 #delete book
 @app.route('/books/<int:book_id>', methods=['DELETE'])
 def delete_books(book_id):
-    book = Books.query.get(id=book_id)
+    book = Books.query.filter_by(id=book_id).first()
     if book:
         db.session.delete(book)
         db.session.commit()
