@@ -1,21 +1,21 @@
 {% extends 'baselogin.html' %}
 
 {% block login %}
-<main class="form-signin">
-    <form action="/login" method="post">
-      <h1 class="h1 mb-4 fw-lighter text-danger">Please Login</h1>
+  <main class="form-signin">
+      <form action="/register" method="post">
+        <h1 class="h1 mb-4 fw-lighter text-danger">Login</h1>
+  
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" name="username"placeholder="Username">
+          <label for="username">Username</label>
+        </div>
 
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" name="username" placeholder="Username">
-        <label for="username">Username</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" name="password" placeholder="Password">
-        <label for="password">Password</label>
-      </div>
-      <button class="w-100 btn my-3 btn-lg btn-success" type="submit">Sign in</button>
-      <a href="/register" class="btn btn-primary w-100 " role="button">Sign up</a>
-      <p class="mt-5 mb-3 text-muted text-center">JEREMIAH&copy; 2023–2033</p>
-    </form>
-</main>
-    {% endblock %}
+        <div class="form-floating mb-3">
+          <input type="password" class="form-control" name="password" placeholder="Password">
+          <label for="password">Password</label>
+        </div>
+        <button class="w-100 btn my-3 btn-lg btn-success" type="submit">Sign in</button>
+        <a href="/register" class="btn btn-primary w-100 " type="submit">Sign up</a>
+      </form>
+    </main>
+{% endblock %}

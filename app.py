@@ -70,7 +70,7 @@ class Books(db.Model):
     year = db.Column(db.Integer)
     added_date = db.Column(db.DateTime(timezone=True),
                            server_default=func.now())
-    def __init__(self, id,category, author,title,year):
+    def __init__(self,category, author,title,year):
         self.category = category
         self.author = author
         self.title = title
@@ -190,13 +190,12 @@ def get_book(book_id):
 # create a new Book
 @app.route('/books', methods=['POST'])
 def create_book():
-    books = len(Books.query.all())
     data = request.get_json()
     category = data.get('category')
     author = data.get('author')
     title = data.get('title')
     year = data.get('year')
-    new_book = Books(id=books+1,category=category,author=author,title=title,year=year)
+    new_book = Books(category=category,author=author,title=title,year=year)
 
     db.session.add(new_book)
     db.session.commit()
