@@ -2,10 +2,10 @@
 
 {% block login %}
   <main class="form-signin">
-      <form action="/register" method="post">
-        <h1 class="h1 mb-4 fw-lighter text-danger">Login</h1>
+      <form action="/login" method="post" class="w-50">
+        <h1 class="h1 mb-4 fw-lighter text-danger">{%block title %}Login{%endblock%}</h1>
   
-        <div class="form-floating mb-3">
+        <div class="form-floating mb-3 w-100">
           <input type="text" class="form-control" name="username"placeholder="Username">
           <label for="username">Username</label>
         </div>

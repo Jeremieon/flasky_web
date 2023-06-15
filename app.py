@@ -167,7 +167,7 @@ def logout():
 #Get all books
 @app.route('/library')
 def get_books():
-    books = Books.query.all()
+    books = Books.query.order_by(Books.id.desc()).all()
     return render_template('library.html',books=books)
 
 #Get Api books
