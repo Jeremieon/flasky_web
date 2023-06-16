@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block content%}
+
 <img src="/static/images/books.jpeg" alt="Nature" class="responsive">
 <h1 class="fw-light my-5 text-danger">{% block title%} Books {% endblock %}</h1>
+<div  style="background-image: url('static/images/creativebooks.jpeg');">
     {% for book in books %}
-    <div class="card w-100 my-3 doom-doom">
+    <div class="card w-50 my-3 doom-doom">
         <div class="card-body text-success">
             
             <h2>{{book.id}}</h2><img src="/static/images/book.png" alt="Book-icon">
@@ -16,6 +18,7 @@
         </div>
     </div>
     {%endfor%}
+</div>
 {% endblock %}
 </body>
 </html>

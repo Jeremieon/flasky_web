@@ -23,7 +23,8 @@ app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 db = SQLAlchemy(app)
 app.secret_key = secret_key
 app.app_context().push()
-#models
+
+#===============================models=======================================================
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True,nullable=False)
@@ -233,3 +234,4 @@ def delete_books(book_id):
         return jsonify({'message': 'Book deleted'})
     return jsonify({'message': 'Book not found'}), 404
 #===============End of Library===================#
+
